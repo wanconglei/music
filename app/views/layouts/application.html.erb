@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Music</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<% content_for :body do %>
+  <div class='layout'>
+    <%= render 'layouts/sidebar' %>
+    <%= render 'layouts/main' do %>
+      <%= yield %>
+    <% end %>
+  </div>
+  <div id='js-overlay' class='overlay overlay--fixed hidden'></div>
+  <div id='js-global-loader' class='overlay overlay--fixed overlay--dark hidden' data-controller='loader'>
+    <%= loader_tag size: 'large' %>
+  </div>
+  <%= render 'shared/dialog' %>
+<% end %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
-</html>
+<%= render template: 'layouts/base' %>

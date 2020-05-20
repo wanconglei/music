@@ -1,0 +1,15 @@
+<div class='layout__main'>
+  <header class='layout__main__header'>
+    <div id='js-flash' class='flash'>
+      <%= render 'shared/flash' %>
+    </div>
+    <%= render 'shared/search_bar' %>
+    <%= render 'shared/nav_bar' %>
+  </header>
+  <main class='layout__main__content position-relative'>
+    <%= yield %>
+  </main>
+  <footer class='layout__main__footer hidden'>
+    <%= render 'shared/mini_player' %>
+  </footer>
+</div>
