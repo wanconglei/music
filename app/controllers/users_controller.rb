@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   def destroy
     # Avoit user delete self
-    raise BlackCandyError::Forbidden if @user == Current.user
+    raise MusicError::Forbidden if @user == Current.user
 
     @user.destroy
     flash.now[:success] = t('success.delete')
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     end
 
     def auth_user
-      raise BlackCandyError::Forbidden unless @user == Current.user || is_admin?
+      raise MusicError::Forbidden unless @user == Current.user || is_admin?
     end
 
     def user_params

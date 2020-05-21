@@ -3,7 +3,7 @@
 class Setting < RailsSettings::Base
   include GlobalSetting
 
-  field :media_path, default: ENV['MEDIA_PATH']
+  field :media_path, default: '/Users/user1/Desktop/wcl/songs'
   field :discogs_token
 
   fields_force_to_string :media_path, :discogs_token

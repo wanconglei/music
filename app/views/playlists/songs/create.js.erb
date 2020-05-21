@@ -1,0 +1,20 @@
+(function() {
+  var playlistElement = App.playlistElement('<%= @playlist.id %>')
+
+  <% if @playlist.songs.size > 1 %>
+    var infiniteScrollElement = document.querySelector("#js-playlist-content [data-controller='infinite-scroll']");
+    var hasNoNextUrl = infiniteScrollElement && !infiniteScrollElement.dataset.infiniteScrollNextUrl
+
+    if (playlistElement && hasNoNextUrl) {
+      App.dispatchEvent(playlistElement, 'playlistSongs:updateCount', '<%= @playlist.songs.size %>');
+      App.dispatchEvent(playlistElement, 'playlistSongs:updatePlayAllLink', '<%= current_playlist_songs_path(song_ids: @playlist.song_ids) %>');
+      document.querySelector('#js-playlist-list-content').insertAdjacentHTML('beforeend', "<%= j(render partial: 'song', collection: @songs, cached: true)%>");
+    }
+  <% else %>
+    if (playlistElement) {
+      App.renderPlaylistContent("<%= j @playlist.buildin? ? render('show_buildin') : render('show') %>")
+    }
+  <% end %>
+})();
+
+<%= render_flash %>
